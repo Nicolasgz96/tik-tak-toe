@@ -29,7 +29,22 @@ let difficulty = 'easy';
 let gameOver = false;
 
 // Scoreboard
-let players = JSON.parse(localStorage.getItem("players")) || [];
+let players;
+try {
+    const storedPlayers = localStorage.getItem("players");
+    console.log("Stored players:", storedPlayers);
+    players = storedPlayers ? JSON.parse(storedPlayers) : [];
+    
+    // Ensure players is an array
+    if (!Array.isArray(players)) {
+        console.warn("Stored players was not an array. Resetting to empty array.");
+        players = [];
+    }
+} catch (error) {
+    console.error("Error parsing stored players:", error);
+    players = [];
+}
+
 let inputNameField = document.getElementById('inputName');
 
 // Convert old player format to new format if necessary
@@ -40,11 +55,6 @@ players = players.map(player => {
         return player;
     }
 });
-
-// Ensure players is an array
-if (!Array.isArray(players)) {
-    players = [];
-}
 
 let saveBtn = document.getElementById('nameBtn');
 let vsField = document.getElementById("gameModeInfo");
@@ -130,7 +140,7 @@ function hideErrorMessage() {
 
 // Function to get a player by name
 function getPlayerByName(name) {
-    return players.find(players => players === name);
+    return players.find(player => player.name === name);
 }
 
 // Function to reset a player's wins
@@ -203,11 +213,6 @@ function drawSymbol(symbol, col, row) {
         ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
     }
     ctx.stroke();
-}
-
-// Function to get a player by name
-function getPlayerByName(name) {
-    return players.find(player => player.name === name);
 }
 
 // Function to check if there's a winner
