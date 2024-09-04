@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Tic-tac-toe</title>
+</head>
+<body>
+    <!-- Game mode selection buttons -->
+    <div class="button-group">  
+        <button id="twoPlayersButton">Play Two Players</button>  
+        <button id="vsMachineButton">Play vs Machine</button>  
+        <button id="machineVsMachineButton">Machine vs Machine</button>  
+        <p id="gameModeInfo"></p> 
+    </div>  
+    
+    <div class="container">  
+        <!-- Game canvas -->
+        <canvas id="gameCanvas" width="300" height="300"></canvas>  
+        
+        <!-- Winning message display -->
+        <div id="winningMessage" class="winning-message">  
+            <h2 data-winning-message-text=""></h2>  
+            <button id="restartButton">Restart</button>  
+        </div>
+        
+        <!-- Scoreboard -->
+        <div class="container scoreboard">
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Won</th>
+                        <th>Lost</th>
+                        <th>Drawn</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Player name input form -->
+        <form>
+            <div class="inputBtn input-container">
+                <div id="errorMesage"></div>
+                <label for="inputName" class="input">
+                    <input name="nameBtn" id="inputName" class="input__field" type="text" placeholder=" " />
+                    <span class="input__label">Enter a name to play</span>
+                </label>
+                <button class="scorebtn primary" id="nameBtn">Save Name</button>
+            </div>
+        </form>  
+    </div>  
+    
+    <!-- Link to JavaScript file -->
+    <script src="index.js"></script>
+</body>
+</html>
